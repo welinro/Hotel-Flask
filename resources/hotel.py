@@ -3,6 +3,7 @@ from flask_restful import Resource, reqparse
 from models.hotel import HotelModel
 from models.usuario import UserModel
 
+
         
 class Hoteis(Resource):
     def get(self):
@@ -23,6 +24,7 @@ class Hotel (Resource):
             
        return {'message':' Hotel not found não encontrado'}, 404 # not found
 
+   
     def post (self, hotel_id):
         if HotelModel.find_hotel(hotel_id):
             return {"message": "Hotel id '{}' already exists.".format(hotel_id)}, 400# Bad request
@@ -36,7 +38,7 @@ class Hotel (Resource):
         return hotel.json()
 
        
-       
+
     def put (self, hotel_id):
         dados = Hotel.argumentos.parse_args()       
         hotel_encontrado = HotelModel.find_hotel(hotel_id)
@@ -52,7 +54,7 @@ class Hotel (Resource):
         return hotel.json(), 201 # created ttt
            
 
-        
+  
     def delete (self, hotel_id):
         hotel = HotelModel.find_hotel(hotel_id)
         if hotel:
