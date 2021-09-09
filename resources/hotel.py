@@ -1,33 +1,9 @@
-import re
+
 from flask_restful import Resource, reqparse
 from models.hotel import HotelModel
-
-hoteis = [
-        {
-        'hotel_id': 'alpha',
-        'nome': 'Alpha hotel',
-        'estrelas': 4.3,
-        'diaria': 212.21,
-        'cidade': 'São paulo'
-         },
-         {
-        'hotel_id': 'palace',
-        'nome': 'palace hotel',
-        'estrelas': 4.5,
-        'diaria': 222.3,
-        'cidade':'Rio de Janeiro'
-         },
-         {
-        'hotel_id': 'gordon',
-        'nome': 'gordon hotel',
-        'estrelas': 4.3,
-        'diaria': 123.3,
-        'cidade':'Minas Gerais'
-         }
-         ]
+from models.usuario import UserModel
 
         
-
 class Hoteis(Resource):
     def get(self):
         return{'hoteis': [hotel.json() for hotel in HotelModel.query.all()]}
@@ -38,14 +14,7 @@ class Hotel (Resource):
     argumentos.add_argument('estrelas', type=float, required= True, help =" The field 'estrelas' cannot be left blank")
     argumentos.add_argument('diaria')
     argumentos.add_argument('cidade')
-    
-    
-
-    def find_hotel(hotel_id):
-        for hotel in hoteis:
-            if hotel['hotel_id'] == hotel_id:
-                return hotel
-        return None
+  
 
     def get (self, hotel_id):
        hotel = HotelModel.find_hotel(hotel_id)
