@@ -18,7 +18,7 @@ jwt=JWTManager(app)
 @app.before_first_request
 def cria_banco():
     banco.create_all()
-
+    
 @jwt.token_in_blocklist_loader
 
 def verifica_blacklist(self,token):
